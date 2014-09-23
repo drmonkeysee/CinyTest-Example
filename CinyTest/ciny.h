@@ -81,8 +81,7 @@ struct ct_testsuite {
  Make a test suite for the list of tests.
  Uses the enclosing function as the test suite name.
  @param test_list The list of tests to run.
- The size of the test array is calculated inline so test_list should be an array lvalue
- to prevent multiple-evaluation side-effects.
+ The size of the test array is calculated inline so test_list must be an array lvalue.
  @return A test suite.
  */
 #define ct_makesuite(test_list) ct_makesuite_setup(test_list, NULL)
@@ -90,8 +89,7 @@ struct ct_testsuite {
  Make a test suite with a setup function.
  Uses the enclosing function as the test suite name.
  @param test_list The list of tests to run.
- The size of the test array is calculated inline so test_list should be an array lvalue
- to prevent multiple-evaluation side-effects.
+ The size of the test array is calculated inline so test_list must be an array lvalue.
  @param setup_function The setup function. Runs before each test case.
  @return A test suite.
  */
@@ -100,8 +98,7 @@ struct ct_testsuite {
  Make a test suite with a setup and teardown function.
  Uses the enclosing function as the test suite name.
  @param test_list The list of tests to run.
- The size of the test array is calculated inline so test_list should be an array lvalue
- to prevent multiple-evaluation side-effects.
+ The size of the test array is calculated inline so test_list must be an array lvalue.
  @param setup_function The setup function. Runs before each test case.
  @param teardown_function The teardown function. Runs after each test case.
  @return A test suite.
@@ -109,7 +106,7 @@ struct ct_testsuite {
 #define ct_makesuite_setup_teardown(test_list, setup_function, teardown_function) \
 ct_makesuite_setup_teardown_named(__func__, \
                                     test_list, \
-                                    ((test_list) ? (sizeof (test_list) / sizeof (test_list)[0]) : 0), \
+                                    (sizeof (test_list) / sizeof (test_list)[0]), \
                                     setup_function, \
                                     teardown_function)
 /**
@@ -139,7 +136,7 @@ size_t ct_runsuite(const struct ct_testsuite *suite);
 
 /**
  Mark a test as ignored.
- To prevent possible side-effects add this assertion as the first line of the test.
+ To prevent unnecessary test execution this assertion should be the first statement of the test function.
  @param message A printf-style format string literal with optional arguments to display when the test is ignored.
  */
 #define ct_ignore(...) ct_internal_ignore("" __VA_ARGS__)
@@ -179,7 +176,7 @@ size_t ct_runsuite(const struct ct_testsuite *suite);
 /**
  Assert whether two values are equal.
  Compares any two basic value types but does not handle pointers, structs, unions, arrays, or function pointers.
- @see ct_assertequalp for pointer equality.
+ @see ct_assertsame for pointer equality.
  @see ct_assertequalstr for string equality.
  @param expected The expected value.
  @param actual The actual value.
@@ -194,8 +191,8 @@ do { \
 /**
  Assert whether two values are not equal.
  Compares any two basic value types but does not handle pointers, structs, unions, arrays, or function pointers.
- @see ct_assertequalp for pointer equality.
- @see ct_assertequalstr for string equality.
+ @see ct_assertnotsame for pointer equality.
+ @see ct_assertnotequalstr for string equality.
  @param expected The expected value.
  @param actual The actual value.
  @param message A printf-style format string literal with optional arguments to display when the assertion fails.
@@ -208,7 +205,7 @@ do { \
 } while (0)
 
 /**
- Assert whether two values are equal within plus or minus a degree of error.
+ Assert whether two floating point values are equal within plus or minus a degree of error.
  @param expected The expected value.
  @param actual The actual value.
  @param precision The range of precision within which expected and actual may be considered equal.
@@ -216,7 +213,7 @@ do { \
  */
 #define ct_assertaboutequal(expected, actual, precision, ...) ct_internal_assertaboutequal(expected, #expected, actual, #actual, precision, __FILE__, __LINE__, "" __VA_ARGS__)
 /**
- Assert whether two values are not equal within plus or minus a degree of error.
+ Assert whether two floating point values are not equal within plus or minus a degree of error.
  @param expected The expected value.
  @param actual The actual value.
  @param precision The range of precision within which expected and actual may be considered not equal.
@@ -241,7 +238,8 @@ do { \
 
 /**
  Assert whether two strings are equal.
- The first argument is a string literal to prevent inadvertent buffer overrun during equality comparison.
+ The first argument is a string literal used to automatically determine the number of characters to compare.
+ If the first argument cannot be a string literal @see ct_assertequalstrn.
  @param expected The expected string. Must be a string literal expression.
  @param actual The actual string.
  @param message A printf-style format string literal with optional arguments to display when the assertion fails.
@@ -249,7 +247,7 @@ do { \
 #define ct_assertequalstr(expected, actual, ...) ct_internal_assertequalstrn("" expected, #expected, actual, #actual, sizeof (expected), __FILE__, __LINE__, "" __VA_ARGS__);
 /**
  Assert whether two strings are equal.
- Compares up to length characters for equality.
+ Compares up to n characters for equality.
  @param expected The expected string.
  @param actual The actual string.
  @param n The maximum number of characters to compare for equality. Must not be greater than the size of expected.
@@ -258,7 +256,8 @@ do { \
 #define ct_assertequalstrn(expected, actual, n, ...) ct_internal_assertequalstrn(expected, #expected, actual, #actual, n, __FILE__, __LINE__, "" __VA_ARGS__);
 /**
  Assert whether two strings are not equal.
- The first argument is a string literal to prevent inadvertent buffer overrun during equality comparison.
+ The first argument is a string literal used to automatically determine the number of characters to compare.
+ If the first argument cannot be a string literal @see ct_assertnotequalstrn.
  @param expected The expected string. Must be a string literal expression.
  @param actual The actual string.
  @param message A printf-style format string literal with optional arguments to display when the assertion fails.
@@ -266,7 +265,7 @@ do { \
 #define ct_assertnotequalstr(expected, actual, ...) ct_internal_assertnotequalstrn("" expected, #expected, actual, #actual, sizeof (expected), __FILE__, __LINE__, "" __VA_ARGS__);
 /**
  Assert whether two strings are not equal.
- Compares up to length characters for inequality.
+ Compares up to n characters for inequality.
  @param expected The expected string.
  @param actual The actual string.
  @param n The maximum number of characters to compare for inequality. Must not be greater than the size of expected.
@@ -281,16 +280,16 @@ do { \
 /**
  @defgroup internal Internal types and functions
  Implementation details of CinyTest.
- These functions provide a greater degree of control over how assertion comparisons are
- defined and displayed. They are not intended for direct use over the public API and are may
+ These functions and types provide a greater degree of control over how assertion comparisons are
+ defined and displayed. They are not intended for direct use over the public API and may
  change in the future without revving the major version. Regardless, full documentation is provided
  since they are defined in the public header and as long as all parameter constraints are observed
- these functions are safe to use.
+ these functions and types are safe to use.
  @{
  */
 /**
  Value type annotation.
- An enumeration of possible simple-value types used for equality assertions.
+ An enumeration of possible simple value types used for equality assertions.
  */
 enum ct_valuetype_annotation {
     CT_ANNOTATE_INVALID,            /**< Expression did not evaluate to a valid value type. */
@@ -301,7 +300,7 @@ enum ct_valuetype_annotation {
 };
 /**
  A comparable value.
- A general-purpose structure for respresenting expressions that can be compared for simple-value equality assertions.
+ A unified type structure over simple value types to aid in equality assertions.
  */
 struct ct_comparable_value {
     union {
@@ -362,7 +361,7 @@ _Generic(v, \
 #endif
 /**
  Create a signed integral comparable value structure.
- @param placeholder An unused paramater to match arity for all makevalue functions. May be any value as it is ignored by the function.
+ @param placeholder An unused parameter to match arity for all makevalue functions. May be any value as it is ignored by the function.
  @param value The widest possible expression of the signed integral value to be converted.
  @return A comparable value structure for the signed integral value.
  */
@@ -373,7 +372,7 @@ inline struct ct_comparable_value ct_makevalue_integral(int placeholder, intmax_
 }
 /**
  Create an unsigned integral comparable value structure.
- @param placeholder An unused paramater to match arity for all makevalue functions. May be any value as it is ignored by the function.
+ @param placeholder An unused parameter to match arity for all makevalue functions. May be any value as it is ignored by the function.
  @param value The widest possible expression of the unsigned integral value to be converted.
  @return A comparable value structure for the unsigned integral value.
  */
@@ -384,7 +383,7 @@ inline struct ct_comparable_value ct_makevalue_uintegral(int placeholder, uintma
 }
 /**
  Create a floating point comparable value structure.
- @param placeholder An unused paramater to match arity for all makevalue functions. May be any value as it is ignored by the function.
+ @param placeholder An unused parameter to match arity for all makevalue functions. May be any value as it is ignored by the function.
  @param value The widest possible expression of the floating point value to be converted.
  @return A comparable value structure for the floating point value.
  */
@@ -395,7 +394,7 @@ inline struct ct_comparable_value ct_makevalue_floating(int placeholder, long do
 }
 /**
  Create a complex number comparable value structure.
- @param placeholder An unused paramater to match arity for all makevalue functions. May be any value as it is ignored by the function.
+ @param placeholder An unused parameter to match arity for all makevalue functions. May be any value as it is ignored by the function.
  @param value The widest possible expression of the complex number value to be converted.
  @return A comparable value structure for the complex number value.
  */
@@ -406,8 +405,8 @@ inline struct ct_comparable_value ct_makevalue_complex(int placeholder, long dou
 }
 /**
  Create a comparable value structure for an expression that cannot be converted into a simple value type.
- @param placeholder An unused paramater to allow for a variadic paramater. May be any value as it is ignored by the function.
- @param expression The non-value type expression that cannot be represented as a comparable value structure. Ignored by the function.
+ @param placeholder An unused parameter to allow for a variadic parameter. May be any value as it is ignored by the function.
+ @param expression The expression that cannot be represented as a comparable value structure. Ignored by the function.
  @return An invalid comparable value structure used for checking a mismatched equality assertion.
  */
 inline struct ct_comparable_value ct_makevalue_invalid(int placeholder, ...)
@@ -425,8 +424,7 @@ inline struct ct_comparable_value ct_makevalue_invalid(int placeholder, ...)
 
 /**
  Mark a test as ignored.
- To prevent possible side-effects add this assertion as the first line of the test.
- Intended for internal use only.
+ To prevent unnecessary test execution this assertion should be the first statement of the test function.
  @see ct_ignore
  @param format The printf-style format string to display when the test is ignored.
  @param format_args Format arguments for the format string.
@@ -435,7 +433,6 @@ _Noreturn void ct_internal_ignore(const char * restrict, ...);
 
 /**
  Assert failure unconditionally with contextual details and message.
- Intended for internal use only.
  @see ct_assertfail
  @param file The name of the file in which the assert fired.
  @param line The line number on which the assert fired.
@@ -446,7 +443,6 @@ _Noreturn void ct_internal_assertfail(const char * restrict, int, const char * r
 
 /**
  Assert whether the expression is true, with contextual details and message.
- Intended for internal use only.
  @see ct_asserttrue
  @param expression The expression to evaluate against the value true.
  @param stringized_expression The string representation of the expression.
@@ -459,7 +455,6 @@ void ct_internal_asserttrue(_Bool, const char * restrict, const char * restrict,
 
 /**
  Assert whether the expression is false, with contextual details and message.
- Intended for internal use only.
  @see ct_assertfalse
  @param expression The expression to evaluate against the value false.
  @param stringized_expression The string representation of the expression.
@@ -472,7 +467,6 @@ void ct_internal_assertfalse(_Bool, const char * restrict, const char * restrict
 
 /**
  Assert whether the expression is NULL, with contextual details and message.
- Intended for internal use only.
  @see ct_assertnull
  @param expression The expression to evaluate against the value NULL.
  @param stringized_expression The string representation of the expression.
@@ -485,7 +479,6 @@ void ct_internal_assertnull(const void * restrict, const char * restrict, const 
 
 /**
  Assert whether the expression is not NULL, with contextual details and message.
- Intended for internal use only.
  @see ct_assertnotnull
  @param expression The expression to evaluate against the value !NULL.
  @param stringized_expression The string representation of the expression.
@@ -498,7 +491,6 @@ void ct_internal_assertnotnull(const void * restrict, const char * restrict, con
 
 /**
  Assert whether two values are equal, with contextual details and message.
- Intended for internal use only.
  @see ct_assertequal
  @param expected The expected value.
  @param stringized_expected The string representation of the expected value expression.
@@ -513,7 +505,6 @@ void ct_internal_assertequal(struct ct_comparable_value, const char *, struct ct
 
 /**
  Assert whether two values are not equal, with contextual details and message.
- Intended for internal use only.
  @see ct_assertnotequal
  @param expected The expected value.
  @param stringized_expected The string representation of the expected value expression.
@@ -527,8 +518,7 @@ void ct_internal_assertequal(struct ct_comparable_value, const char *, struct ct
 void ct_internal_assertnotequal(struct ct_comparable_value, const char *, struct ct_comparable_value, const char *, const char * restrict, int, const char * restrict, ...);
 
 /**
- Assert whether two values are equal within plus or minus a degree of error, with contextual details and message.
- Intended for internal use only.
+ Assert whether two floating point values are equal within plus or minus a degree of error, with contextual details and message.
  @see ct_assertaboutequal
  @param expected The expected value.
  @param stringized_expected The string representation of the expected value expression.
@@ -543,8 +533,7 @@ void ct_internal_assertnotequal(struct ct_comparable_value, const char *, struct
 void ct_internal_assertaboutequal(long double, const char *, long double, const char *, long double, const char * restrict, int, const char * restrict, ...);
 
 /**
- Assert whether two values are not equal within plus or minus a degree of error, with contextual details and message.
- Intended for internal use only.
+ Assert whether two floating point values are not equal within plus or minus a degree of error, with contextual details and message.
  @see ct_assertnotaboutequal
  @param expected The expected value.
  @param stringized_expected The string representation of the expected value expression.
@@ -560,7 +549,6 @@ void ct_internal_assertnotaboutequal(long double, const char *, long double, con
 
 /**
  Assert whether two pointers refer to the same object, with contextual details and message.
- Intended for internal use only.
  @see ct_assertsame
  @param expected The expected pointer.
  @param stringized_expected The string representation of the expected pointer expression.
@@ -575,8 +563,7 @@ void ct_internal_assertsame(const void *, const char *, const void *, const char
 
 /**
  Assert whether two pointers refer to different objects, with contextual details and message.
- Intended for internal use only.
- @see ct_assertsame
+ @see ct_assertnotsame
  @param expected The expected pointer.
  @param stringized_expected The string representation of the expected pointer expression.
  @param actual The actual pointer.
@@ -590,7 +577,6 @@ void ct_internal_assertnotsame(const void *, const char *, const void *, const c
 
 /**
  Assert whether two strings are equal, with contextual details and message.
- Intended for internal use only.
  @see ct_assertequalstr
  @see ct_assertequalstrn
  @param expected The expected string.
@@ -607,9 +593,8 @@ void ct_internal_assertequalstrn(const char *, const char *, const char *, const
 
 /**
  Assert whether two strings are not equal, with contextual details and message.
- Intended for internal use only.
- @see ct_assertequalstr
- @see ct_assertequalstrn
+ @see ct_assertnotequalstr
+ @see ct_assertnotequalstrn
  @param expected The expected string.
  @param stringized_expected The string representation of the expected string expression.
  @param actual The actual string.
