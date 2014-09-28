@@ -15,8 +15,8 @@
 
 static void makerectangle_createsrectangle(void *context)
 {
-    int expected_width = 8;
-    int expected_height = 5;
+    const int expected_width = 8;
+    const int expected_height = 5;
     
     struct rectangle rect = make_rectangle(expected_width, expected_height);
     
@@ -59,7 +59,7 @@ static void rectangletostring_buildsrectanglestring(void *context)
 
 int main(int argc, char *argv[])
 {
-    struct ct_testcase tests[] = {
+    const struct ct_testcase tests[] = {
         ct_maketest(makerectangle_createsrectangle),
         ct_maketest(rectanglearea_calculatesarea),
         ct_maketest(rectanglehypotenuse_calculateshypotenuse),
