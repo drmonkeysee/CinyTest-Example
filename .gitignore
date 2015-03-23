@@ -12,3 +12,7 @@ xcuserdata
 *.xccheckout
 *.moved-aside
 DerivedData
+
+# Project Specific
+CinyTest/*.h
+CinyTest/*.a
