@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		023F8F8F1AE6130800AE19DA /* libcinytest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 023F8F8E1AE6130800AE19DA /* libcinytest.a */; };
 		02FDC3CA19A42E990034DA73 /* RectangleTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 02FDC3C919A42E990034DA73 /* RectangleTests.c */; };
 		02FDC3CC19A42E990034DA73 /* CinyTest_Example.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02FDC3CB19A42E990034DA73 /* CinyTest_Example.1 */; };
 		02FDC3D419A42ED50034DA73 /* Rectangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 02FDC3D319A42ED50034DA73 /* Rectangle.c */; };
-		02FDC3D619A42F9E0034DA73 /* libCinyTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FDC3D519A42F9E0034DA73 /* libCinyTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,12 +27,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		023F8F8E1AE6130800AE19DA /* libcinytest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcinytest.a; path = CinyTest/libcinytest.a; sourceTree = "<group>"; };
 		02FDC3C619A42E990034DA73 /* CinyTest-Example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CinyTest-Example"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02FDC3C919A42E990034DA73 /* RectangleTests.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = RectangleTests.c; sourceTree = "<group>"; };
 		02FDC3CB19A42E990034DA73 /* CinyTest_Example.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CinyTest_Example.1; sourceTree = "<group>"; };
 		02FDC3D219A42EA60034DA73 /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
 		02FDC3D319A42ED50034DA73 /* Rectangle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Rectangle.c; sourceTree = "<group>"; };
-		02FDC3D519A42F9E0034DA73 /* libCinyTest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCinyTest.a; path = CinyTest/libCinyTest.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FDC3D619A42F9E0034DA73 /* libCinyTest.a in Frameworks */,
+				023F8F8F1AE6130800AE19DA /* libcinytest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +50,7 @@
 		02FDC3BD19A42E980034DA73 = {
 			isa = PBXGroup;
 			children = (
-				02FDC3D519A42F9E0034DA73 /* libCinyTest.a */,
+				023F8F8E1AE6130800AE19DA /* libcinytest.a */,
 				02FDC3C819A42E990034DA73 /* CinyTest-Example */,
 				02FDC3C719A42E990034DA73 /* Products */,
 			);
