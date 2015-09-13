@@ -16,3 +16,4 @@ DerivedData
 # Project Specific
 CinyTest/*.h
 CinyTest/*.a
+recttests
