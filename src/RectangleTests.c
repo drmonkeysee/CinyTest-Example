@@ -49,7 +49,7 @@ static void rectangletostring_buildsrectanglestring(void *context)
     
     int characters_written = rectangle_tostring(rect, output, sizeof output);
     
-    ct_asserttrue(characters_written < sizeof output, "Test buffer too small for rectangle_tostring");
+    ct_asserttrue((size_t)characters_written < sizeof output, "Test buffer too small for rectangle_tostring");
     ct_assertequalstr("Rectangle { w: 6, h: 8 }", output);
 }
 
