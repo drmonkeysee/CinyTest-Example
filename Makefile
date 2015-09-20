@@ -7,7 +7,7 @@ TARGET := recttests
 .PHONY: build clean check
 
 build:
-	$(CC) $(CFLAGS) $(LDFLAGS) $(SRC_FILES) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC_FILES) $(LDFLAGS) -o $(TARGET)
 
 check: build
 	./$(TARGET)
