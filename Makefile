@@ -1,5 +1,5 @@
-CC := gcc
-CFLAGS := -Wall -Wextra -pedantic -Wno-gnu-zero-variadic-macro-arguments -Wno-unused-parameter -Os -std=c11 -ICinyTest
+CC := clang
+CFLAGS := -Wall -Wextra -pedantic -Wno-gnu-zero-variadic-macro-arguments -Wno-unused-parameter -Os -std=c11 -ICinyTest $(XCFLAGS)
 LDFLAGS := -LCinyTest -lcinytest -lm
 SRC_FILES := $(addprefix src/,Rectangle.c RectangleTests.c)
 TARGET := recttests
