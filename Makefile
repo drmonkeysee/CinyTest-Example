@@ -1,6 +1,6 @@
 OS_TARGET := $(shell uname)
 CC := gcc
-CFLAGS := -Wall -Wextra -pedantic -Wno-unused-parameter -std=c11 -ICinyTest
+CFLAGS := -Wall -Wextra -Wno-unused-parameter -std=c11 -ICinyTest
 LDFLAGS := -LCinyTest
 LDLIBS := -lcinytest -lm
 SP := strip
@@ -14,7 +14,7 @@ endif
 
 ifdef MACOS
 CC := clang
-CFLAGS += -Wno-gnu-zero-variadic-macro-arguments
+CFLAGS += -pedantic -Wno-gnu-zero-variadic-macro-arguments
 endif
 
 ifdef XCFLAGS
