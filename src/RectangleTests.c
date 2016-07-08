@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Brandon Stansbury. All rights reserved.
 //
 
-#include <ciny.h>
+#include "ciny.h"
 #include "Rectangle.h"
 
 /////
