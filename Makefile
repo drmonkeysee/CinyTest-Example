@@ -5,7 +5,7 @@ LDFLAGS := -LCinyTest
 LDLIBS := -lcinytest -lm
 SP := strip
 SPFLAGS := -s
-SRC_FILES := $(addprefix src/,Rectangle.c RectangleTests.c)
+SRC_FILES := $(wildcard src/*.c)
 BUILD_DIR := build
 TARGET := $(BUILD_DIR)/recttests
 
