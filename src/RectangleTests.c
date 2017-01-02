@@ -54,20 +54,17 @@ static void rectangletostring_buildsrectanglestring(void *context)
 }
 
 /////
-// Main driver function; returns non-zero if any tests failed.
+// Test suite accessor
 /////
 
-int main(int argc, const char *argv[])
+struct ct_testsuite rectangle_tests(void)
 {
-    const struct ct_testcase tests[] = {
+    static const struct ct_testcase tests[] = {
         ct_maketest(makerectangle_createsrectangle),
         ct_maketest(rectanglearea_calculatesarea),
         ct_maketest(rectanglehypotenuse_calculateshypotenuse),
         ct_maketest(rectangletostring_buildsrectanglestring)
     };
-    struct ct_testsuite suite = ct_makesuite(tests);
-    
-    size_t results = ct_runsuite(&suite);
-    
-    return results != 0;
+
+    return ct_makesuite(tests);
 }
