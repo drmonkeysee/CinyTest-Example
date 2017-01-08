@@ -28,7 +28,7 @@ static void circlediameter_calculatesdiameter(void *context)
     
     double diameter = circle_diameter(c);
     
-    ct_assertequal(40, diameter);
+    ct_assertaboutequal(37.7, diameter, 0.01);
 }
 
 static void circlearea_calculatesarea(void *context)
@@ -37,7 +37,7 @@ static void circlearea_calculatesarea(void *context)
     
     double area = circle_area(c);
     
-    ct_assertaboutequal(7.62, area, 0.01);
+    ct_assertaboutequal(50.26, area, 0.01);
 }
 
 static void circletostring_buildscirclestring(void *context)
