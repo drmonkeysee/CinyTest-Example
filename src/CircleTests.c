@@ -66,4 +66,3 @@ struct ct_testsuite circle_tests(void)
 
     return ct_makesuite(tests);
 }
-
