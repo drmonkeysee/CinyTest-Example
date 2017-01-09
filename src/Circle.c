@@ -30,6 +30,6 @@ double circle_area(struct circle c)
 int circle_tostring(struct circle c, char *output, size_t size)
 {
     static const char * const restrict template = "Circle { r: %d }";
-    int num_chars = snprintf(output, size, template, c.radius);
+    const int num_chars = snprintf(output, size, template, c.radius);
     return num_chars;
 }

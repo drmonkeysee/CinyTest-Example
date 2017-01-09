@@ -18,7 +18,7 @@ int main(int argc, const char *argv[])
         circle_tests()
     };
 
-    size_t results = ct_run(suites);
+    const size_t results = ct_run(suites);
 
     return results != 0;
 }
