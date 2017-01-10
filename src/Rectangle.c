@@ -10,7 +10,7 @@
 #include <math.h>
 #include "Rectangle.h"
 
-struct rectangle make_rectangle(int width, int height)
+struct rectangle rectangle_make(int width, int height)
 {
     return (struct rectangle){ width, height };
 }

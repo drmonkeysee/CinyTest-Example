@@ -22,7 +22,7 @@ struct rectangle {
 // Rectangle module operations
 /////
 
-struct rectangle make_rectangle(int width, int height);
+struct rectangle rectangle_make(int width, int height);
 
 int rectangle_area(struct rectangle rect);
 

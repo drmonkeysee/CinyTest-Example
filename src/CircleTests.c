@@ -13,18 +13,18 @@
 // Unit Tests for Circle module
 /////
 
-static void makecircle_createscircle(void *context)
+static void circlemake_createscircle(void *context)
 {
     const int expected_radius = 6;
     
-    const struct circle c = make_circle(expected_radius);
+    const struct circle c = circle_make(expected_radius);
     
     ct_assertequal(expected_radius, c.radius);
 }
 
 static void circlediameter_calculatesdiameter(void *context)
 {
-    const struct circle c = make_circle(6);
+    const struct circle c = circle_make(6);
     
     const double diameter = circle_diameter(c);
     
@@ -33,7 +33,7 @@ static void circlediameter_calculatesdiameter(void *context)
 
 static void circlearea_calculatesarea(void *context)
 {
-    const struct circle c = make_circle(4);
+    const struct circle c = circle_make(4);
     
     const double area = circle_area(c);
     
@@ -42,7 +42,7 @@ static void circlearea_calculatesarea(void *context)
 
 static void circletostring_buildscirclestring(void *context)
 {
-    const struct circle c = make_circle(9);
+    const struct circle c = circle_make(9);
     char output[50];
     
     const int characters_written = circle_tostring(c, output, sizeof output);
@@ -58,7 +58,7 @@ static void circletostring_buildscirclestring(void *context)
 struct ct_testsuite circle_tests(void)
 {
     static const struct ct_testcase tests[] = {
-        ct_maketest(makecircle_createscircle),
+        ct_maketest(circlemake_createscircle),
         ct_maketest(circlediameter_calculatesdiameter),
         ct_maketest(circlearea_calculatesarea),
         ct_maketest(circletostring_buildscirclestring)

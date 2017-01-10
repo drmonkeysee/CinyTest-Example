@@ -21,7 +21,7 @@ struct circle {
 // Circle module operations
 /////
 
-struct circle make_circle(int radius);
+struct circle circle_make(int radius);
 
 double circle_diameter(struct circle c);
 

@@ -13,12 +13,12 @@
 // Unit Tests for Rectangle module
 /////
 
-static void makerectangle_createsrectangle(void *context)
+static void rectanglemake_createsrectangle(void *context)
 {
     const int expected_width = 8;
     const int expected_height = 5;
     
-    const struct rectangle rect = make_rectangle(expected_width, expected_height);
+    const struct rectangle rect = rectangle_make(expected_width, expected_height);
     
     ct_assertequal(expected_width, rect.width);
     ct_assertequal(expected_height, rect.height);
@@ -26,7 +26,7 @@ static void makerectangle_createsrectangle(void *context)
 
 static void rectanglearea_calculatesarea(void *context)
 {
-    const struct rectangle rect = make_rectangle(8, 5);
+    const struct rectangle rect = rectangle_make(8, 5);
     
     const int area = rectangle_area(rect);
     
@@ -35,7 +35,7 @@ static void rectanglearea_calculatesarea(void *context)
 
 static void rectanglehypotenuse_calculateshypotenuse(void *context)
 {
-    const struct rectangle rect = make_rectangle(3, 7);
+    const struct rectangle rect = rectangle_make(3, 7);
     
     const double hypo = rectangle_hypotenuse(rect);
     
@@ -44,7 +44,7 @@ static void rectanglehypotenuse_calculateshypotenuse(void *context)
 
 static void rectangletostring_buildsrectanglestring(void *context)
 {
-    const struct rectangle rect = make_rectangle(6, 8);
+    const struct rectangle rect = rectangle_make(6, 8);
     char output[50];
     
     const int characters_written = rectangle_tostring(rect, output, sizeof output);
@@ -60,7 +60,7 @@ static void rectangletostring_buildsrectanglestring(void *context)
 struct ct_testsuite rectangle_tests(void)
 {
     static const struct ct_testcase tests[] = {
-        ct_maketest(makerectangle_createsrectangle),
+        ct_maketest(rectanglemake_createsrectangle),
         ct_maketest(rectanglearea_calculatesarea),
         ct_maketest(rectanglehypotenuse_calculateshypotenuse),
         ct_maketest(rectangletostring_buildsrectanglestring)

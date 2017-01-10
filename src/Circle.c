@@ -12,7 +12,7 @@
 
 const double Pi = 3.1415927;
 
-struct circle make_circle(int radius)
+struct circle circle_make(int radius)
 {
     return (struct circle){ radius };
 }
