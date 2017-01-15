@@ -28,7 +28,7 @@ static void circlediameter_calculatesdiameter(void *context)
     
     const double diameter = circle_diameter(c);
     
-    ct_assertaboutequal(37.7, diameter, 0.01);
+    ct_assertaboutequal(37.7, diameter, 0.1);
 }
 
 static void circlearea_calculatesarea(void *context)
