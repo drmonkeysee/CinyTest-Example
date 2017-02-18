@@ -15,8 +15,7 @@
 
 static void rectanglemake_createsrectangle(void *context)
 {
-    const int expected_width = 8;
-    const int expected_height = 5;
+    const int expected_width = 8, expected_height = 5;
     
     const struct rectangle rect = rectangle_make(expected_width, expected_height);
     

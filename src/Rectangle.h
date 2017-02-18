@@ -14,8 +14,7 @@
 /////
 
 struct rectangle {
-    int width;
-    int height;
+    int width, height;
 };
 
 /////
