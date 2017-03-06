@@ -1,4 +1,5 @@
 # Project
 CinyTest/*.h
 CinyTest/*.a
+CinyTest/*.lib
 build/
