@@ -22,7 +22,7 @@ ifdef XCFLAGS
 CFLAGS += $(XCFLAGS)
 endif
 
-.PHONY: release debug build clean check
+.PHONY: release debug build clean demo check
 
 release: CFLAGS += -Os
 release: build
@@ -37,6 +37,22 @@ build:
 
 check:
 	$(TARGET)
+
+demo: LEVELS := 0 1 2 3
+demo:
+	$(TARGET) --ct-help
+	$(TARGET) --ct-version
+	$(foreach lvl,$(LEVELS),$(TARGET) --ct-verbose=$(lvl) ;)
+	$(TARGET) --ct-colorized=n
+	$(TARGET) --ct-suppress-output=n
+	$(TARGET) --ct-include=circle_tests:,:*calculatesarea
+	$(TARGET) --ct-include=*calculates* --ct-exclude=*area
+	$(TARGET) --ct-include=*calculates* --ct-verbose=3
+	$(TARGET) --ct-exclude=*area --ct-verbose=3
+	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3
+	$(TARGET) --ct-include=*calculates* --ct-verbose=3 --ct-colorized=n
+	$(TARGET) --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
+	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
 
 clean:
 	$(RM) -r $(BUILD_DIR)
