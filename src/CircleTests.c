@@ -6,6 +6,7 @@
 //  Copyright (c) 2017 Brandon Stansbury. All rights reserved.
 //
 
+#include <stdbool.h>
 #include "ciny.h"
 #include "Circle.h"
 
@@ -51,6 +52,15 @@ static void circletostring_buildscirclestring(void *context)
     ct_assertequalstr("Circle { r: 9 }", output);
 }
 
+static void circleprint_printscircle(void *context)
+{
+    const struct circle c = circle_make(5);
+
+    circle_print(c);
+
+    ct_asserttrue(true, "This should never fail");
+}
+
 /////
 // Test suite accessor
 /////
@@ -61,7 +71,8 @@ struct ct_testsuite circle_tests(void)
         ct_maketest(circlemake_createscircle),
         ct_maketest(circlediameter_calculatesdiameter),
         ct_maketest(circlearea_calculatesarea),
-        ct_maketest(circletostring_buildscirclestring)
+        ct_maketest(circletostring_buildscirclestring),
+        ct_maketest(circleprint_printscircle)
     };
 
     return ct_makesuite(tests);

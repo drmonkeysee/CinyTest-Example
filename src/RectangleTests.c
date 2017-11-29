@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Brandon Stansbury. All rights reserved.
 //
 
+#include <stdbool.h>
 #include "ciny.h"
 #include "Rectangle.h"
 
@@ -52,6 +53,15 @@ static void rectangletostring_buildsrectanglestring(void *context)
     ct_assertequalstr("Rectangle { w: 6, h: 8 }", output);
 }
 
+static void rectangleprint_printsrectangle(void *context)
+{
+    const struct rectangle rect = rectangle_make(5, 2);
+
+    rectangle_print(rect);
+
+    ct_asserttrue(true, "This should never fail");
+}
+
 /////
 // Test suite accessor
 /////
@@ -62,7 +72,8 @@ struct ct_testsuite rectangle_tests(void)
         ct_maketest(rectanglemake_createsrectangle),
         ct_maketest(rectanglearea_calculatesarea),
         ct_maketest(rectanglehypotenuse_calculateshypotenuse),
-        ct_maketest(rectangletostring_buildsrectanglestring)
+        ct_maketest(rectangletostring_buildsrectanglestring),
+        ct_maketest(rectangleprint_printsrectangle)
     };
 
     return ct_makesuite(tests);

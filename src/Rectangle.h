@@ -27,6 +27,8 @@ int rectangle_area(struct rectangle rect);
 
 double rectangle_hypotenuse(struct rectangle rect);
 
-int rectangle_tostring(struct rectangle rect, char *output, size_t size);
+int rectangle_tostring(struct rectangle rect, char output[], size_t size);
+
+void rectangle_print(struct rectangle rect);
 
 #endif
