@@ -2,7 +2,7 @@
 
 Example code for CinyTest. Used for testing and inclusion in CinyTest's documentation.
 
-Run `make` or `make debug` to build the rectangle unit tests and then run `make check` to execute the test suite. `make clean` will remove all build artifacts.
+Run `make` or `make debug` to build the rectangle unit tests and then run `make check` to execute the test suite. `make clean` will remove all build artifacts. Finally, `make demo` executes several test runs to show off various combinations of CinyTest command-line options.
 
 On Windows run the **winbuild.bat** file to build the unit tests. See the [CinyTest](https://github.com/drmonkeysee/CinyTest) documentation for more details on building for Windows.
 

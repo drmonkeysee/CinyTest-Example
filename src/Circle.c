@@ -40,7 +40,7 @@ void circle_print(struct circle c)
 {
     char buffer[BUFFER_SIZE];
    
-    const int write_count = circle_tostring(c, buffer, BUFFER_SIZE);
+    const int write_count = circle_tostring(c, buffer, sizeof buffer);
     
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);

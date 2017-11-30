@@ -39,7 +39,7 @@ void rectangle_print(struct rectangle rect)
 {
     char buffer[BUFFER_SIZE];
    
-    const int write_count = rectangle_tostring(rect, buffer, BUFFER_SIZE);
+    const int write_count = rectangle_tostring(rect, buffer, sizeof buffer);
     
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);
