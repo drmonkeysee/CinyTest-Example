@@ -39,19 +39,32 @@ check:
 	$(TARGET)
 
 demo: LEVELS := 0 1 2 3
+demo: SEP := ==================================================
 demo:
 	$(TARGET) --ct-help
+	@echo $(SEP)
 	$(TARGET) --ct-version
+	@echo $(SEP)
 	$(foreach lvl,$(LEVELS),$(TARGET) --ct-verbose=$(lvl) ;)
+	@echo $(SEP)
 	$(TARGET) --ct-colorized=n
+	@echo $(SEP)
 	$(TARGET) --ct-suppress-output=n
+	@echo $(SEP)
 	$(TARGET) --ct-include=circle_tests:,:*calculatesarea
+	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-exclude=*area
+	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-verbose=3
+	@echo $(SEP)
 	$(TARGET) --ct-exclude=*area --ct-verbose=3
+	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3
+	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-verbose=3 --ct-colorized=n
+	@echo $(SEP)
 	$(TARGET) --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
+	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
 
 clean:
