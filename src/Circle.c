@@ -12,7 +12,7 @@
 #include "Circle.h"
 
 #define BUFFER_SIZE 20u
-const double Pi = 3.1415927;
+static const double Pi = 3.1415927;
 
 struct circle circle_make(int radius)
 {
