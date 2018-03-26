@@ -6,6 +6,7 @@
 //  Copyright (c) 2017 Brandon Stansbury. All rights reserved.
 //
 
+#include <stddef.h>
 #include "ciny.h"
 
 struct ct_testsuite rectangle_tests(void);

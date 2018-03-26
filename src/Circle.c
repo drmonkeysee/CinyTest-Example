@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
+#include <stddef.h>
 #include "Circle.h"
 
 #define BUFFER_SIZE 20u
