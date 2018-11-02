@@ -16,7 +16,7 @@ static const double Pi = 3.1415927;
 
 struct circle circle_make(int radius)
 {
-    return (struct circle){ radius };
+    return (struct circle){radius};
 }
 
 double circle_diameter(struct circle c)

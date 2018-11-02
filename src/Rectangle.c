@@ -15,7 +15,7 @@
 
 struct rectangle rectangle_make(int width, int height)
 {
-    return (struct rectangle){ width, height };
+    return (struct rectangle){width, height};
 }
 
 int rectangle_area(struct rectangle rect)
