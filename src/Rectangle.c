@@ -32,7 +32,9 @@ double rectangle_hypotenuse(struct rectangle rect)
 int rectangle_tostring(struct rectangle rect, char output[], size_t size)
 {
     static const char * const restrict template = "Rectangle { w: %d, h: %d }";
-    const int num_chars = snprintf(output, size, template, rect.width, rect.height);
+    const int num_chars = snprintf(
+        output, size, template, rect.width, rect.height
+    );
     return num_chars;
 }
 

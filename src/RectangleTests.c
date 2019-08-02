@@ -20,7 +20,9 @@ static void rectanglemake_createsrectangle(void *context)
 {
     const int expected_width = 8, expected_height = 5;
 
-    const struct rectangle rect = rectangle_make(expected_width, expected_height);
+    const struct rectangle rect = rectangle_make(
+        expected_width, expected_height
+    );
 
     ct_assertequal(expected_width, rect.width);
     ct_assertequal(expected_height, rect.height);
@@ -49,9 +51,14 @@ static void rectangletostring_buildsrectanglestring(void *context)
     const struct rectangle rect = rectangle_make(6, 8);
     char output[50];
 
-    const int characters_written = rectangle_tostring(rect, output, sizeof output);
+    const int characters_written = rectangle_tostring(
+        rect, output, sizeof output
+    );
 
-    ct_asserttrue((size_t)characters_written < sizeof output, "Test buffer too small for rectangle_tostring");
+    ct_asserttrue(
+        (size_t)characters_written < sizeof output,
+        "Test buffer too small for rectangle_tostring"
+    );
     ct_assertequalstr("Rectangle { w: 6, h: 8 }", output);
 }
 
