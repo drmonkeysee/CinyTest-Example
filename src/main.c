@@ -6,8 +6,9 @@
 //  Copyright (c) 2017 Brandon Stansbury. All rights reserved.
 //
 
-#include <stddef.h>
 #include "ciny.h"
+
+#include <stddef.h>
 
 struct ct_testsuite rectangle_tests(void);
 struct ct_testsuite circle_tests(void);
@@ -16,7 +17,7 @@ int main(int argc, const char *argv[])
 {
     const struct ct_testsuite suites[] = {
         rectangle_tests(),
-        circle_tests()
+        circle_tests(),
     };
 
     const size_t results = ct_run_withargs(suites, argc, argv);

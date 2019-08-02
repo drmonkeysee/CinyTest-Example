@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Brandon Stansbury. All rights reserved.
 //
 
-#include <stdio.h>
+#include "Rectangle.h"
+
 #include <math.h>
 #include <stddef.h>
-#include "Rectangle.h"
+#include <stdio.h>
 
 #define BUFFER_SIZE 30u
 
@@ -38,9 +39,9 @@ int rectangle_tostring(struct rectangle rect, char output[], size_t size)
 void rectangle_print(struct rectangle rect)
 {
     char buffer[BUFFER_SIZE];
-   
+
     const int write_count = rectangle_tostring(rect, buffer, sizeof buffer);
-    
+
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);
     } else {

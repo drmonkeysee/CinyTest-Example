@@ -6,10 +6,11 @@
 //  Copyright (c) 2017 Brandon Stansbury. All rights reserved.
 //
 
-#include <stdio.h>
+#include "Circle.h"
+
 #include <math.h>
 #include <stddef.h>
-#include "Circle.h"
+#include <stdio.h>
 
 #define BUFFER_SIZE 20u
 static const double Pi = 3.1415927;
@@ -39,9 +40,9 @@ int circle_tostring(struct circle c, char output[], size_t size)
 void circle_print(struct circle c)
 {
     char buffer[BUFFER_SIZE];
-   
+
     const int write_count = circle_tostring(c, buffer, sizeof buffer);
-    
+
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);
     } else {

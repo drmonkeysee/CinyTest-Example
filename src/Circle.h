@@ -9,6 +9,8 @@
 #ifndef Circle_h
 #define Circle_h
 
+#include <stddef.h>
+
 /////
 // Circle definition
 /////

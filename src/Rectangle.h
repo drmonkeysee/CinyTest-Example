@@ -9,6 +9,8 @@
 #ifndef Rectangle_h
 #define Rectangle_h
 
+#include <stddef.h>
+
 /////
 // Rectangle definition
 /////
