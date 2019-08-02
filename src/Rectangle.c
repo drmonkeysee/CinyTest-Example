@@ -9,7 +9,6 @@
 #include "Rectangle.h"
 
 #include <math.h>
-#include <stddef.h>
 #include <stdio.h>
 
 #define BUFFER_SIZE 30u
