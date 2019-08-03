@@ -52,7 +52,7 @@ static void rectangletostring_buildsrectanglestring(void *context)
     char output[50];
 
     const int characters_written = rectangle_tostring(
-        rect, output, sizeof output
+        rect, sizeof output, output
     );
 
     ct_asserttrue(

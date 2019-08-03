@@ -29,7 +29,7 @@ double circle_area(struct circle c)
     return Pi * pow(c.radius, 2);
 }
 
-int circle_tostring(struct circle c, char output[], size_t size)
+int circle_tostring(struct circle c, size_t size, char output[static size])
 {
     static const char * const restrict template = "Circle { r: %d }";
     const int num_chars = snprintf(output, size, template, c.radius);
@@ -40,7 +40,7 @@ void circle_print(struct circle c)
 {
     char buffer[BUFFER_SIZE];
 
-    const int write_count = circle_tostring(c, buffer, sizeof buffer);
+    const int write_count = circle_tostring(c, sizeof buffer, buffer);
 
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);

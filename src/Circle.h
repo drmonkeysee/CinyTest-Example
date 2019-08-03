@@ -29,7 +29,7 @@ double circle_diameter(struct circle c);
 
 double circle_area(struct circle c);
 
-int circle_tostring(struct circle c, char output[], size_t size);
+int circle_tostring(struct circle c, size_t size, char output[static size]);
 
 void circle_print(struct circle c);
 

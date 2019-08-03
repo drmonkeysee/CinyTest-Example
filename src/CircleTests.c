@@ -48,7 +48,7 @@ static void circletostring_buildscirclestring(void *context)
     const struct circle c = circle_make(9);
     char output[50];
 
-    const int characters_written = circle_tostring(c, output, sizeof output);
+    const int characters_written = circle_tostring(c, sizeof output, output);
 
     ct_asserttrue(
         (size_t)characters_written < sizeof output,
