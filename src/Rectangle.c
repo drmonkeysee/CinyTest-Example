@@ -29,7 +29,7 @@ double rectangle_hypotenuse(struct rectangle rect)
 }
 
 int rectangle_tostring(
-    struct rectangle rect, size_t size, char output[static size]
+    struct rectangle rect, size_t size, char output[size]
 )
 {
     static const char * const restrict template = "Rectangle { w: %d, h: %d }";
@@ -48,6 +48,6 @@ void rectangle_print(struct rectangle rect)
     if ((size_t)write_count < BUFFER_SIZE) {
         printf("%s\n", buffer);
     } else {
-        fprintf(stderr, "Rectangle buffer too small!\n");
+        fputs("Rectangle buffer too small!\n", stderr);
     }
 }

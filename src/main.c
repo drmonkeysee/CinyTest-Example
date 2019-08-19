@@ -13,7 +13,7 @@
 struct ct_testsuite rectangle_tests(void);
 struct ct_testsuite circle_tests(void);
 
-int main(int argc, const char *argv[static argc + 1])
+int main(int argc, const char *argv[argc+1])
 {
     const struct ct_testsuite suites[] = {
         rectangle_tests(),
