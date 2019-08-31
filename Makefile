@@ -1,6 +1,6 @@
 OS_TARGET := $(shell uname)
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -Wno-unused-parameter -std=c17 -iquoteCinyTest
+CFLAGS := -Wall -Wextra -Wno-unused-parameter -std=c17 -iquoteCinyTest
 LDFLAGS := -LCinyTest
 LDLIBS := -lcinytest -lm
 SP := strip
@@ -24,7 +24,7 @@ endif
 
 .PHONY: release debug build clean demo check
 
-release: CFLAGS += -Os
+release: CFLAGS += -Werror -Os -DNDEBUG
 release: build
 	$(SP) $(SPFLAGS) $(TARGET)
 
