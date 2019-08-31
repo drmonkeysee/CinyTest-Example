@@ -1,6 +1,6 @@
 OS_TARGET := $(shell uname)
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -Wno-unused-parameter -std=c11 -iquoteCinyTest
+CFLAGS := -Wall -Wextra -Werror -Wno-unused-parameter -std=c17 -iquoteCinyTest
 LDFLAGS := -LCinyTest
 LDLIBS := -lcinytest -lm
 SP := strip
