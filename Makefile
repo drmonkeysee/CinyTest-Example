@@ -65,8 +65,7 @@ demo:
 	@echo $(SEP)
 	$(TARGET) --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
 	@echo $(SEP)
-	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3 \
-		--ct-colorized=n
+	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
 
 clean:
 	$(RM) -r $(BUILD_DIR)
