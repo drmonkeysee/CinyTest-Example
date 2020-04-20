@@ -32,7 +32,7 @@ int rectangle_tostring(
     struct rectangle rect, size_t size, char output[size]
 )
 {
-    static const char * const restrict template = "Rectangle { w: %d, h: %d }";
+    static const char *const restrict template = "Rectangle { w: %d, h: %d }";
     const int num_chars = snprintf(
         output, size, template, rect.width, rect.height
     );
