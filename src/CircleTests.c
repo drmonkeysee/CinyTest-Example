@@ -50,10 +50,8 @@ static void circletostring_buildscirclestring(void *context)
 
     const int characters_written = circle_tostring(c, sizeof output, output);
 
-    ct_asserttrue(
-        (size_t)characters_written < sizeof output,
-        "Test buffer too small for circle_tostring"
-    );
+    ct_asserttrue((size_t)characters_written < sizeof output,
+                  "Test buffer too small for circle_tostring");
     ct_assertequalstr("Circle { r: 9 }", output);
 }
 

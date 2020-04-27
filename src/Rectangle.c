@@ -28,14 +28,11 @@ double rectangle_hypotenuse(struct rectangle rect)
     return sqrt(pow(rect.width, 2) + pow(rect.height, 2));
 }
 
-int rectangle_tostring(
-    struct rectangle rect, size_t size, char output[size]
-)
+int rectangle_tostring(struct rectangle rect, size_t size, char output[size])
 {
     static const char *const restrict template = "Rectangle { w: %d, h: %d }";
-    const int num_chars = snprintf(
-        output, size, template, rect.width, rect.height
-    );
+    const int num_chars = snprintf(output, size, template, rect.width,
+                                   rect.height);
     return num_chars;
 }
 
