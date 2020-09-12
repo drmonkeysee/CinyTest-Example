@@ -1,21 +1,17 @@
 OS_TARGET := $(shell uname)
-CC := gcc
-CFLAGS := -Wall -Wextra -Wno-unused-parameter -std=c17 -iquoteCinyTest
-LDFLAGS := -LCinyTest
+CFLAGS := -Wall -Wextra -Wno-unused-parameter -std=c17
 LDLIBS := -lcinytest -lm
 SP := strip
-SPFLAGS := -s
 SRC_FILES := $(wildcard src/*.c)
 BUILD_DIR := build
 TARGET := $(BUILD_DIR)/recttests
 
 ifeq ($(OS_TARGET), Darwin)
-CC := clang
-SPFLAGS := -
-endif
-
-ifeq ($(CC), clang)
 CFLAGS += -pedantic -Wno-gnu-zero-variadic-macro-arguments
+SPFLAGS := -
+else
+LDFLAGS := -L/usr/local/lib -Wl,-rpath,/usr/local/lib
+SPFLAGS := -s
 endif
 
 ifdef XCFLAGS
