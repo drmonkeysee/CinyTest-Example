@@ -62,6 +62,10 @@ demo:
 	$(TARGET) --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
 	@echo $(SEP)
 	$(TARGET) --ct-include=*calculates* --ct-exclude=*area --ct-verbose=3 --ct-colorized=n
+	@echo $(SEP)
+	$(TARGET) --ct-xml=tests.xml
+	cat tests.xml
+	rm tests.xml
 
 clean:
 	$(RM) -r $(BUILD_DIR)
