@@ -11,7 +11,6 @@
 #include <math.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 20u
 static const double Pi = 3.1415927;
 
 struct circle circle_make(int radius)
@@ -38,11 +37,11 @@ int circle_tostring(struct circle c, size_t size, char output[size])
 
 void circle_print(struct circle c)
 {
-    char buffer[BUFFER_SIZE];
+    char buffer[20];
 
     const int write_count = circle_tostring(c, sizeof buffer, buffer);
 
-    if ((size_t)write_count < BUFFER_SIZE) {
+    if ((size_t)write_count < sizeof buffer) {
         printf("%s\n", buffer);
     } else {
         fputs("Circle buffer too small!\n", stderr);

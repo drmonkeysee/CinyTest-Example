@@ -11,8 +11,6 @@
 #include <math.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 30u
-
 struct rectangle rectangle_make(int width, int height)
 {
     return (struct rectangle){width, height};
@@ -38,11 +36,11 @@ int rectangle_tostring(struct rectangle rect, size_t size, char output[size])
 
 void rectangle_print(struct rectangle rect)
 {
-    char buffer[BUFFER_SIZE];
+    char buffer[30];
 
     const int write_count = rectangle_tostring(rect, sizeof buffer, buffer);
 
-    if ((size_t)write_count < BUFFER_SIZE) {
+    if ((size_t)write_count < sizeof buffer) {
         printf("%s\n", buffer);
     } else {
         fputs("Rectangle buffer too small!\n", stderr);
