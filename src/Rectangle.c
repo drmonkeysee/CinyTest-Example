@@ -36,9 +36,9 @@ void rectangle_print(struct rectangle rect)
 {
     char buffer[30];
 
-    const int write_count = rectangle_tostring(rect, sizeof buffer, buffer);
+    const size_t write_count = rectangle_tostring(rect, sizeof buffer, buffer);
 
-    if ((size_t)write_count < sizeof buffer) {
+    if (write_count < sizeof buffer) {
         printf("%s\n", buffer);
     } else {
         fputs("Rectangle buffer too small!\n", stderr);
