@@ -36,9 +36,11 @@ void rectangle_print(struct rectangle rect)
 {
     char buffer[30];
 
-    const size_t write_count = rectangle_tostring(rect, sizeof buffer, buffer);
+    const int write_count = rectangle_tostring(rect, sizeof buffer, buffer);
 
-    if (write_count < sizeof buffer) {
+    if (write_count < 0) {
+        fputs("Rectangle string conversion failed!\n", stderr);
+    } else if ((size_t)write_count < sizeof buffer) {
         printf("%s\n", buffer);
     } else {
         fputs("Rectangle buffer too small!\n", stderr);

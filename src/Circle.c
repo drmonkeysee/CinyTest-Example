@@ -37,9 +37,11 @@ void circle_print(struct circle c)
 {
     char buffer[20];
 
-    const size_t write_count = circle_tostring(c, sizeof buffer, buffer);
+    const int write_count = circle_tostring(c, sizeof buffer, buffer);
 
-    if (write_count < sizeof buffer) {
+    if (write_count < 0) {
+        fputs("Circle string conversion failed!\n", stderr);
+    } else if ((size_t)write_count < sizeof buffer) {
         printf("%s\n", buffer);
     } else {
         fputs("Circle buffer too small!\n", stderr);
