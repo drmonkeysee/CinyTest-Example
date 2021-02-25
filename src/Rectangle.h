@@ -11,17 +11,17 @@
 
 #include <stddef.h>
 
-/////
+//
 // Rectangle definition
-/////
+//
 
 struct rectangle {
     int width, height;
 };
 
-/////
+//
 // Rectangle module operations
-/////
+//
 
 struct rectangle rectangle_make(int width, int height);
 

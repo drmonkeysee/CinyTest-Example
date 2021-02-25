@@ -12,9 +12,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-/////
+//
 // Unit Tests for Rectangle module
-/////
+//
 
 static void rectanglemake_createsrectangle(void *context)
 {
@@ -67,9 +67,9 @@ static void rectangleprint_printsrectangle(void *context)
     ct_asserttrue(true, "This should never fail");
 }
 
-/////
+//
 // Test suite accessor
-/////
+//
 
 struct ct_testsuite rectangle_tests(void)
 {

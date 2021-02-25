@@ -12,9 +12,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-/////
+//
 // Unit Tests for Circle module
-/////
+//
 
 static void circlemake_createscircle(void *context)
 {
@@ -64,9 +64,9 @@ static void circleprint_printscircle(void *context)
     ct_asserttrue(true, "This should never fail");
 }
 
-/////
+//
 // Test suite accessor
-/////
+//
 
 struct ct_testsuite circle_tests(void)
 {

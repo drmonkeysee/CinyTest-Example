@@ -11,17 +11,17 @@
 
 #include <stddef.h>
 
-/////
+//
 // Circle definition
-/////
+//
 
 struct circle {
     int radius;
 };
 
-/////
+//
 // Circle module operations
-/////
+//
 
 struct circle circle_make(int radius);
 
