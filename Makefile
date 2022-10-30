@@ -1,5 +1,5 @@
 OS_TARGET := $(shell uname)
-CFLAGS := -Wall -Wextra -Wno-unused-parameter -std=c17
+CFLAGS := -Wall -Wextra -Wconversion -Wno-unused-parameter -std=c17
 LDLIBS := -lcinytest -lm
 SP := strip
 SRC_FILES := $(wildcard src/*.c)
